@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Posts</h1>
+<%= link_to 'New Post', new_qsadmin_post_path %>
+
+<% @admin_posts.each do |admin_post| %>
+    <h3><%= link_to admin_post.name %></h3>
+    <p>
+      <%= link_to 'Edit', edit_qsadmin_post_path(admin_post) %>
+      <%= link_to 'Destroy', admin_post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+<% end %>

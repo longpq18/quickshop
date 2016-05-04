@@ -1,0 +1,2 @@
+module Qsadmin::DashboardsHelper
+end

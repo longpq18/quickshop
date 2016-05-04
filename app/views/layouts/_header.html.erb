@@ -1,0 +1,36 @@
+<header class="header container-fluid">
+	<div class="row">
+		<div class="col-md-3 logo">
+			<h1><a href="<%= root_path %>">QuickShop</a></h1>
+		</div>
+		<div class="col-md-6 menu">
+			<nav class="menu-nav">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="">Category</a>
+						<ul class="submenu">
+							
+						</ul>
+					</li>
+					<li><a href="">Blog</a></li>
+					<li><a href="/about">About us</a></li>
+					<li><a href="/contact">Contact us</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-md-3 login">
+			<% if session[:user_id] %>
+				<%= link_to session[:user_name], user_path(session[:user_id]) %>
+				<ul>
+					<li>
+						<%= link_to 'Logout', session_path(session), method: :delete, class: 'register' %>
+					</li>
+				</ul>
+				
+				<% else %>
+				<%= link_to 'Login', new_session_path, class: 'register' %>
+				<%= link_to 'Register', new_user_path, class: 'register' %>
+			<% end %>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,2 @@
+module Qsadmin::PostsHelper
+end

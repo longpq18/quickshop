@@ -1,0 +1,17 @@
+<%= form_for(@qsadmin_post) do |f| %>
+  <% if @qsadmin_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@qsadmin_post.errors.count, "error") %> prohibited this qsadmin_post from being saved:</h2>
+
+      <ul>
+      <% @qsadmin_post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

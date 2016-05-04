@@ -1,0 +1,12 @@
+
+<div class="col-md-6 col-md-offset-3">
+	<div class="edit-book-form">
+		<h1>Edit Book</h1>
+		<%= form_for @post, :html => { :multipart => true } do |f| %>
+			<%= f.select :category_id, @categories %>
+			<%= f.text_field :name, label: "Name" %>
+			<%= f.cktext_area :content %>
+			<%= f.button :submit, :class => "btn-custom2" %>
+		<% end %>
+	</div>
+</div>

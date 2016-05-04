@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+<h3><label>Title: </label><%= @post.name %></h3>
+<p><label>Content: </label><%= raw @post.content %></p>
+<p><%= @post.category.name %></p>
+<% if current_user && @post.user == current_user %>
+	<%= link_to 'Edit', edit_post_path(@post) %>
+<% end %>
+<%= link_to 'Back', posts_path %>

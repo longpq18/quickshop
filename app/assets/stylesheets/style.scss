@@ -1,0 +1,207 @@
+ul, ol {
+	list-style: none;
+}
+
+.header {
+	background: #169f85;
+	opacity: .9;
+	.logo {
+		text-align: center;
+		h1 {
+			a {
+				color: #fff;
+				&:hover {
+					text-decoration: none;
+					color: orange;
+				}
+			}
+		}
+	}
+
+	.menu {
+		.menu-nav {
+			margin-top: 15px;
+			>ul {
+				margin-bottom: 0;
+				height: 55px;
+				>li {
+					float: left;
+					padding-right: 10px;
+					position: relative;
+					height: 100%;
+					>a {
+						padding: 10px;
+						display: block;
+						color: #fff;
+						&:hover {
+							text-decoration: none;
+							color: orange;
+						}
+					}
+					ul {
+						opacity: 0;
+						visibility: hidden;
+						position: absolute;
+						-webkit-transition: all 0.3s ease-in-out;
+						-moz-transition: all 0.3s ease-in-out;
+						-o-transition: all 0.3s ease-in-out;
+						-ms-transition: all 0.3s ease-in-out;
+						transition: all 0.3s ease-in-out;
+						top: 120%;
+						background: #169f85;
+						padding: 20px;
+						width: 200px;
+						border-top: 3px solid #333;
+						z-index: 9999999;
+
+						li {
+							padding: 5px 0;
+							&:hover {
+								background: #fff;
+								a {
+									color: orange;
+								}
+							}
+							a {
+								color: #fff;
+								&:hover {
+									
+									text-decoration: none;
+								}
+							}
+						}
+					}
+
+					&:hover {
+						> ul {
+							opacity: 1;
+							visibility: visible;
+							top: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.login {
+		display: inline-block;
+		a {
+			display: inline-block;
+		}
+	}
+}
+
+a.register {
+	padding: 5px 10px;
+	display: table;
+	background: orange;
+	color: #fff;
+	margin: 20px 0;
+
+	&:hover {
+		text-decoration: none;
+		background: yellow;
+	}
+}
+
+span.notice {
+	color: red;
+}
+
+.main-content {
+	padding: 20px 0;
+	.product-content {
+		padding: 0;
+		padding-bottom: 10px;
+		position: inherit !important;
+		.category {
+			.cat-title {
+				background: orange;
+				display: table;
+				border-radius: 0 15px 0 15px;
+				padding: 2px 15px;
+				font-size: 25px;
+
+				a {
+					color: #fff;
+					&:hover {
+						background: transparent;
+						text-decoration: none;
+					}
+				}
+				&:hover {
+					background: #169f85;
+				}
+			}
+		}
+		.products {
+			padding: 0;
+			position: inherit !important;
+			.prd-img {
+				position: inherit !important;
+			}
+		}
+	}
+}
+
+.footer {
+	padding: 0;
+	.footer-top {
+		padding: 50px;
+		background: #19262d;
+		display: inline-block;
+		margin-bottom: -5px;
+		h3 {
+			color: #fff;
+			font-size: 15px;
+			padding-bottom: 10px;
+			text-transform: uppercase;
+		}
+
+		ul {
+			padding: 0;
+			li {
+				padding-bottom: 10px;
+
+				a {
+					color: #c0c6cf;
+					-webkit-transition: all 0.3s ease-in-out;
+					-moz-transition: all 0.3s ease-in-out;
+					-o-transition: all 0.3s ease-in-out;
+					-ms-transition: all 0.3s ease-in-out;
+					transition: all 0.3s ease-in-out;
+					&:hover {
+						padding-left: 10px;
+						text-decoration: none;
+						color: #f8f8f8;
+					}
+				}
+			}
+		}
+		p {
+			color: #c0c6cf;
+		}
+	}
+	.copy-right {
+		background: #151f26;
+		padding: 10px 50px 0 50px;
+		p {
+			color: #c0c6cf;
+		}
+	}
+}
+
+
+
+.button_to {
+	input[type="submit"] {
+		background: #169f85;
+		color: #fff;
+		border: none;
+		padding: 5px 10px;
+		&:hover {
+			background: orange;
+		}
+	}
+}
