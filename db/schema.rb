@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501071400) do
+ActiveRecord::Schema.define(version: 20160509031837) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -37,13 +37,29 @@ ActiveRecord::Schema.define(version: 20160501071400) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "content",     limit: 255
-    t.integer  "status",      limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "user_id",     limit: 4
-    t.integer  "category_id", limit: 4
+    t.string   "name",               limit: 255
+    t.text     "content",            limit: 65535
+    t.integer  "status",             limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "user_id",            limit: 4
+    t.integer  "category_id",        limit: 4
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.integer  "views",              limit: 4
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "detail",     limit: 65535
+    t.float    "price",      limit: 24
+    t.integer  "quantum",    limit: 4
+    t.text     "note",       limit: 65535
+    t.integer  "view",       limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "qsadmin_posts", force: :cascade do |t|

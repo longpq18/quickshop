@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<div class="posts-index">
+  <% if product.count != 0 %>
+    <% @products.limit(6).each do |product| %>
+      <div class="col-md-4 product-detail">
+        <h3><%= link_to product.name, product %></h3>
+        
+        <p><label>Pushlished at </label> <%= time_ago_in_words(product.created_at) %></p>
+
+        <% if session[:user_name] == 'hklong' %>
+          <p class="post-button clearfix"><%= link_to 'New Product', new_product_path %></p>
+          <%= link_to 'Destroy', product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+
+    <% end %>
+  <% else %>
+    <h4>Product is empty</h4>
+  <% end %>
+  <div class="clearfix"></div>
+</div>

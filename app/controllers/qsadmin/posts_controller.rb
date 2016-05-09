@@ -3,7 +3,7 @@ class Qsadmin::PostsController < Qsadmin::BaseController
   
 
   def index
-    @admin_posts = Post.all
+    @posts = Post.all.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show

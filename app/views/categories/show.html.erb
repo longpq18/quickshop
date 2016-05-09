@@ -1,7 +1,18 @@
 <p id="notice"><%= notice %></p>
+
 <h3><%= @category.name %></h3>
-<span>Status: <%= @category.status %></span>
-<p>
-	<%= link_to 'Edit', edit_category_path(@category) %> |
-	<%= link_to 'Back', categories_path %>
-</p>
+<div class="posts-index">
+	<% @posts.each do |post| %>
+	  <div class="col-md-4 post-detail">
+	    <%= image_tag post.image.url %>
+	    <h3><%= link_to post.name, post %></h3>
+	    <p><label>By </label> <%= link_to post.user.username, user_path(post.user.id) %></p>
+	    <p><label>Pushlished at </label> <%= time_ago_in_words(post.created_at) %></p>
+
+	    <% if session[:user_name] == 'hklong' %>
+	      <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+	    <% end %>
+	  </div>
+
+	<% end %>
+</div>

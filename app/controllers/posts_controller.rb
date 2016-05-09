@@ -5,16 +5,14 @@ class PostsController < ApplicationController
   def index
     @categories = Category.all
     if params[:category].blank?
-      @posts = Post.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+      @posts = Post.all.order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
     else
       @category_id = Category.find_by(name: params[:category]).id
-      @posts = Post.where(:category_id => @category_id).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+      @posts = Post.where(:category_id => @category_id).order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
     end
-    #@posts = Post.all.paginate(:page => params[:page], :per_page => 1)
   end
 
   def show
-    #@category = Category.all
     @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
@@ -59,7 +57,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit( :name, :content, :status, :user_id, :category_id )
+      params.require(:post).permit( :name, :content, :status, :user_id, :category_id, :image )
     end
 
     def authorize
