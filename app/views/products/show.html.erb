@@ -1,4 +1,71 @@
 <p id="notice"><%= notice %></p>
+<div class="col-md-4 product-image">
+	<%= image_tag @product.product_image.url %>
+</div>
+<div class="col-md-8 product-detail">
+	<h3><%= @product.name %></h3>
+	<h2 class="avg-rating">Average Rating</h2>
+	<div class="average-review-rating" data-score=<%= @average_review %>></div>
+	<span>Category: <%= link_to @product.product_category.name, product_category_path(@product.product_category.id) %></span>
+	<p><%= raw @product.detail %></p>
+</div>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="col-md-12 ">
+	<ul class="tabs">
+		<li class="li-active"><a href="#reviews" class="active">Reviews</a></li>
+		<li><a href="#descriptions">Descriptions</a></li>
+	</ul>
+	<div id="reviews" class="tab-content" >
+		<h1><%= @product.reviews.count %> Reviews</h1>
+		<%= render @product.reviews %>
+
+		<div>
+			<% if session[:user_id] %>
+				<%= link_to "Add Review", new_product_review_path(@product), class: "btn-custom register"  %>
+			<% end %>
+		</div>
+	</div>
+
+	<div id="descriptions" class="tab-content" >
+		<p><%= raw @product.detail %></p>
+	</div>
+
+</div>	
+<% if session[:user_id] && session[:user_name] == 'hklong' %>
+	<%= link_to 'Edit', edit_product_path(@product) %>
+<% end %>
+
+<div class="col-md-12 related-posts">
+	<h3>Recent Products</h3>
+	<% Product.all.where(:product_category_id => @product.product_category.id).where.not(:id => @product.id ).limit(4).order('created_at DESC').each do |f| %>
+		<div class="col-md-3 related-posts-details">
+			<%= image_tag f.product_image.url %>
+			<h3><%= link_to f.name, f %></h3>
+			<p><label>Category: </label> <%= f.product_category.name %></p>
+			<div class="average-review-rating" data-score=<%= @average_review %>></div>
+
+		</div>
+		
+	<% end %>
+</div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
+
+
+<script>
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>

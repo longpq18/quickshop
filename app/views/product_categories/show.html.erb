@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<h3><%= @product_category.name %></h3>
+<div class="related-posts">
+<% Product.where( :product_category_id => @product_category.id ).order(' created_at DESC ').each do | pro |  %>
+		<div class="col-md-3 related-posts-details ">
+			<%= image_tag pro.product_image.url %>
+			<%= link_to pro.name, pro %>
+			<div class="average-review-rating" data-score=<%= pro.reviews.average(:rating) %>>
+				
+			</div>
+		</div>
+		
+<% end %>
+</div>
+
+<script>
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>

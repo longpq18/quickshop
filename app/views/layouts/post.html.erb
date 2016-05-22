@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickShop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+
+<section class="container main-content">
+	<div class="col-md-8">
+
+		<%= yield %>
+
+	</div>
+
+	<div class="col-md-4">
+		<div class="posts-sidebar">
+			<h3>Category</h3>
+			<ul>
+				<% Category.all.each do |cat| %>
+					<li><%= link_to cat.name, cat %></li>
+				<% end %>
+			</ul>
+		</div>
+
+		<div class="posts-sidebar">
+			<h3>Recent Posts</h3>
+			<ul>
+				<% Post.all.order('created_at desc').limit(5).each do |post| %>
+					<li>
+						<div class="sidebar-img">
+							<%= image_tag post.image.url %>
+						</div>
+						<div class="sidebar-detail">
+							<h3><%= link_to post.name.first(40), post %></h3>
+							<p><span>Published at <%= time_ago_in_words(post.created_at) %></span></p>
+							<p><span>By: </span><%= post.user.username %></p>
+						</div>
+						
+					</li>
+				<% end %>
+			</ul>
+		</div>
+
+		<div class="tags">
+			<h3>Tags</h3>
+		</div>
+
+	</div>
+	
+</section>
+
+<%= render 'layouts/footer' %>
+
+</body>
+</html>

@@ -15,6 +15,8 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'bcrypt-ruby', :require => 'bcrypt' 
 gem 'will_paginate', '~> 3.1'
+gem "font-awesome-rails"
+gem 'protected_attributes'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

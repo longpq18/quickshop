@@ -1,9 +1,15 @@
 class User < ActiveRecord::Base
     #attr_accessor :password
     #has_secure_password
-	has_many :posts, dependent: :destroy
+	  has_many :posts, dependent: :destroy
+    has_many :reviews
+    has_many :comments
     before_save :encrypt_password
     after_save :clear_password
+
+    has_attached_file :avatar
+    validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     validates :first_name, :presence => true, :uniqueness => true, :length => { :in => 3..20 }

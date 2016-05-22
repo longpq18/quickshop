@@ -1,12 +1,19 @@
-<p id="notice"><%= notice %></p>
-<h3><label>Title: </label><%= @post.name %></h3>
-<p><label>Author </label> <%= link_to @post.user.username, user_path(@post.user.id) %></p>
-<p><label>Pushlished at </label> <%= time_ago_in_words(@post.created_at) %></p>
-<p><label>Content: </label><%= raw @post.content %></p>
-<p><label>In : </label><%= link_to @post.category.name, category_path(@post.category.id) %></p>
-<% if current_user && @post.user == current_user %>
-	<%= link_to 'Edit', edit_post_path(@post) %>
-<% end %>
-<% if session[:user_name] == 'hklong' %>
-  <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure ?" } %>
-<% end %>
+<div class="post-index">
+	<p id="notice"><%= notice %></p>
+	<h3><%= @post.name %></h3>
+	<p><label>Author </label> <%= link_to @post.user.username, user_path(@post.user.id) %></p>
+	<p><label>Pushlished at </label> <%= time_ago_in_words(@post.created_at) %></p>
+	<p><%= raw @post.content %></p>
+	<p><label>In : </label><%= link_to @post.category.name, category_path(@post.category.id) %></p>
+	<% if current_user && @post.user == current_user %>
+		<%= link_to 'Edit', edit_post_path(@post) %>
+	<% end %>
+	<% if session[:user_name] == 'hklong' %>
+	  <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure ?" } %>
+	<% end %>
+
+	<div class="comments">
+		<%= render @post.comments %>
+		<%= render 'comments/form'  %>
+	</div>
+</div>

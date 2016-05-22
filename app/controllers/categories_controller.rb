@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  layout 'layouts/post'
 
   def index
     @categories = Category.all
@@ -7,7 +8,7 @@ class CategoriesController < ApplicationController
 
   def show
     @cat = Category.find(params[:id])
-    @posts = @cat.posts
+    @posts = @cat.posts.limit(10).paginate(:page => params[:page], :per_page => 10)
   end
 
   def new

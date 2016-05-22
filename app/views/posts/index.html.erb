@@ -3,12 +3,16 @@
 <div class="posts-index">
   <% @categories.each do | cat | %>
     <h2 class="category-name"><%= link_to cat.name, cat %></h2>
-    <% cat.posts.limit(6).each do |post| %>
+    <% cat.posts.order('created_at DESC').limit(6).each do |post| %>
       <div class="col-md-4 post-detail">
         <%= image_tag post.image.url %>
-        <h3><%= link_to post.name, post %></h3>
-        <p><label>By </label> <%= link_to post.user.username, user_path(post.user.id) %></p>
+        <h3><%= link_to post.name.first(30), post %></h3>
+        <p><label>By </label> <%= link_to post.user.username, user_path(post.user.id) %> | 
+          <label>Category:</label> <%= link_to post.category.name, category_path(post.category.id) %></p>
         <p><label>Pushlished at </label> <%= time_ago_in_words(post.created_at) %></p>
+        <p>
+          Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+        </p>
 
         <% if session[:user_name] == 'hklong' %>
           <%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>

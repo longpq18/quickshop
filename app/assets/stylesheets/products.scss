@@ -1,3 +1,142 @@
-// Place all the styles related to the Products controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$primary : #2ea2cc;
+.posts-index {
+	.post-index-detail {
+		margin-bottom: 20px;
+		.post-index-details {
+			border: 1px solid #f8f8f8;
+			img.image {
+				width: 100%;
+				height: 210px;
+			}
+
+			.post-index-content {
+				padding: 0 10px 10px 5px;
+				h3 {
+					font-size: 20px;
+					//min-height: 60px;
+					line-height: 30px;
+					a{
+						color: #333;
+					}
+					&:hover {
+						a {
+							text-decoration: none;
+							color: $primary;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.post-detail {
+		min-height: 320px;
+		position: inherit !important;
+
+	}
+
+	.category-name {
+		clear: both;
+	}
+}
+
+.product-thumbnail {
+	width: 19.6%;
+	display: inline-block;
+	position: relative;
+	margin-bottom: 20px;
+
+	&:hover {
+		.hover {
+			opacity: 1;
+			top: 0;
+		}
+	}
+
+	.image {
+		img {
+			width: 100%;
+		}
+	}
+
+	.hover {
+		opacity: 0;
+		position: absolute;
+		display: block;
+		width: 100%;
+		top: 80%;
+		left: 0;
+		text-align: center;
+
+		&:before {
+			background: $primary;
+		}
+	}	
+
+	.product-details {
+
+		h3 {
+			font-size: 14px;
+			a {
+				color: $primary;
+				&:hover {
+					text-decoration: none;
+					color: #222;
+				}
+			}
+		}
+
+		.title {
+			padding-left: 5px;
+		}
+
+		.prices {
+			padding-top: 18px;
+			text-align: right;
+			padding-right: 5px;
+		}
+	}
+}
+
+.tabs {
+	padding: 20px 0;
+	li {
+		display: inline-block;
+		background: #ccc;
+    	padding: 5px 10px;
+
+    	&.li-active {
+    		background: #333;
+    	}
+    	a {
+    		color: #fff;
+    		outline: none;
+    		text-decoration: none;
+    	}
+	}
+}
+
+.related-posts {
+	.related-posts-details {
+		>img {
+			width: 100%;
+		}
+	}
+}
+
+.sidebar-shop {
+	ul {
+		padding: 0;
+	}
+}
+
+.average-review-rating {
+	img {
+		width: 12px;
+		height: 12px;
+	}
+}
+
+.products {
+	margin: 20px 0;
+}

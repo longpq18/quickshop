@@ -1,0 +1,32 @@
+<div>
+	<% Product.all.limit(10).each do |product| %>
+		<div class="product-thumbnail">
+			<div class="image">
+				<%= image_tag product.product_image.url %>
+			</div>
+			<span class="hover"></span>
+
+			<div class="product-details">
+				<div class="col-md-7 title">
+		        	<h3><%= link_to product.name, product %></h3>
+		        	<div class="average-review-rating" data-score=<%= product.reviews.average(:rating) %>></div>
+		        </div>
+		        <div class="col-md-5 prices">
+					<span class="prices-detail">$<%= product.price %></span>
+		        </div>
+			</div>
+	        
+	    </div>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	$('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+
+</script>

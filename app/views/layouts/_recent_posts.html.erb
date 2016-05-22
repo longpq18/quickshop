@@ -1,0 +1,13 @@
+<div class="recent-posts container">
+	<h3 class="head">Recent Posts</h3>
+	<% Post.all.limit(4).order('created_at ASC').each do |post| %>
+		
+			<div class="col-md-3 recent-posts-detail">
+				<%= link_to (image_tag post.image.url), post %>
+				<h3><%= link_to post.name.first(30), post %></h3>
+				<p><span>Pushlished at </span> <%= time_ago_in_words(post.created_at) %></p>
+				<p><%= raw post.content.first(100) %></p>
+			</div>
+		
+	<% end %>
+</div>

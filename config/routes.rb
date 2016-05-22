@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'index/index'
+
+  resources :testimonials
+  resources :product_categories
   get 'about' => 'pages#about'
 
   get 'contact' => 'pages#contact'
 
-  get 'pages/404'
+  #get 'pages/404'
 
   namespace :qsadmin do
 
@@ -21,7 +25,7 @@ Rails.application.routes.draw do
   
   resources :categories
 
-  get "name", to: "categories#show", as: "aks"
+  #get "categories/:name", to: "categories#show"
 
   #match '/categories/:id/:slug' => 'categories#show', :as => :slug
   resources :sessions
@@ -32,18 +36,26 @@ Rails.application.routes.draw do
 
   get 'register/confirm/:id' => 'users#show'
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
 
-  resources :products
+  get '/blog' => 'posts#index'
+
+  get 'tags/:tag', to: 'posts#index', as: :tag
+
+  resources :products do
+    resources :reviews
+  end
 
   get '/shop' => 'products#index'
 
-  root "products#index"
+  root "index#index"
 
   mount Ckeditor::Engine => '/ckeditor'
 
   # error pages
   #get "*any", to: "errors#not_found", :via => all
-  match "/500", :to => "errors#internal_server_error", :via => :all
+  #match "/500", :to => "errors#internal_server_error", :via => :all
 
 end

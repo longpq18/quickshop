@@ -1,0 +1,23 @@
+<div class="review">
+
+	<div class="review-rating" data-score="<%= review.rating %>"></div>
+	<p class="review-comment"><%= raw review.comment %></p>
+	<p>by: <%= review.user.username %></p>
+
+
+	<% if session[:user_id] %>
+
+		<% if review.user_id == current_user.id %>
+
+			<div class="links btn-group">
+
+				<%= link_to "Edit", edit_product_review_path(review.product, review), class: "btn btn-custom" %>
+				<%= link_to "Delete", product_review_path(review.product, review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+			</div>
+		
+		<% end %>	
+
+	<% end %>
+
+</div>		

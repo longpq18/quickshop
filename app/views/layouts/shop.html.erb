@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickShop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+
+<section class="container main-content">
+	<div class="col-md-3 sidebar-shop">
+		<h3>Category</h3>
+		<ul>
+			<% ProductCategory.all.each do | cat | %>
+				<li><%= link_to cat.name, cat %></li>
+			<% end %>
+		</ul>
+	</div>
+
+	<div class="col-md-9 products">
+		<%= yield %>
+	</div>
+	
+</section>
+
+<%= render 'layouts/footer' %>
+
+</body>
+</html>

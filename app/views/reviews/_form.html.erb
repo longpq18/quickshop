@@ -1,0 +1,14 @@
+<%= form_for ([ @product, @product.reviews.build ]) do | f | %>
+	<div id="rating-form">
+		<label>Rating</label>
+	</div>
+	<%= f.cktext_area :comment  %>
+	<%= f.submit "Comment", :class => 'register' %>
+<% end %>
+
+<script>
+	$('#rating-form').raty({
+		path: '/assets/',
+		scoreName: 'review[rating]'
+	});
+</script>

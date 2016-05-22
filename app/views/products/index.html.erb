@@ -1,22 +1,44 @@
 <p id="notice"><%= notice %></p>
+<% if params[:search] %>
+  Search : <%= params[:search] %>
+<% end %>
+<% if @products.blank? %>
+  <h4>There are no products containing the term <%= params[:search] %>.</h4>
+<% end %>
 
 <div class="posts-index">
-  <% if product.count != 0 %>
-    <% @products.limit(6).each do |product| %>
-      <div class="col-md-4 product-detail">
-        <h3><%= link_to product.name, product %></h3>
-        
-        <p><label>Pushlished at </label> <%= time_ago_in_words(product.created_at) %></p>
 
-        <% if session[:user_name] == 'hklong' %>
-          <p class="post-button clearfix"><%= link_to 'New Product', new_product_path %></p>
-          <%= link_to 'Destroy', product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
+  <% if session[:user_name] == 'hklong' %>
+      <p class="post-button clearfix">
+          <%= link_to 'New Product', new_product_path %>
+      </p>
+  <% end %>
+
+  <% if @products.count != 0 %>
+    <% @products.limit(6).each do |product| %>
+
+      <div class="col-md-3 post-index-detail">
+        <div class="post-index-details">
+          <%= image_tag product.product_image.url, :class => 'image' %>
+          <div class="post-index-content">
+            <h3><%= link_to product.name, product %></h3>
+            <div class="average-review-rating" data-score=<%= product.reviews.average(:rating) %>>
+            </div>
+
+            <% if session[:user_name] == 'hklong' %>
+              <%= link_to 'Destroy', product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </div>
+        </div>
+
       </div>
 
     <% end %>
+
   <% else %>
     <h4>Product is empty</h4>
   <% end %>
+
   <div class="clearfix"></div>
+
 </div>

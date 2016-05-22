@@ -1,30 +1,36 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  layout 'layouts/product', only: [:show]
+  layout 'layouts/shop', only: [:index]
 
-  # GET /products
-  # GET /products.json
   def index
     @products = Product.all
+    if params[:search]
+      @products = Product.search(params[:search]).order("created_at DESC")
+    else
+      @products = Product.all.order('created_at DESC')
+    end
   end
 
-  # GET /products/1
-  # GET /products/1.json
   def show
+    @categories = ProductCategory.all.map{ |c| [c.name, c.id] }
+    #@category = ProductCategory.find(params[:id])
+    #@recent_posts = @category.products
+    if @product.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @product.reviews.average(:rating).round(2)
+    end
   end
 
-  # GET /products/new
   def new
     @product = Product.new
+    @categories = ProductCategory.all.map{ |c| [c.name, c.id] }
   end
 
-  # GET /products/1/edit
-  def edit
-  end
-
-  # POST /products
-  # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.product_category_id = params[:product_category_id]
 
     respond_to do |format|
       if @product.save
@@ -37,8 +43,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
+  def edit
+    @categories = ProductCategory.all.map{ |c| [c.name, c.id] }
+  end
+
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -51,8 +59,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|
@@ -62,13 +68,12 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_product
       @product = Product.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.fetch(:product, {})
+      params.require(:product).permit(:name, :product_image, :detail, :price, :quantum, :note, :product_category_id)
     end
 end

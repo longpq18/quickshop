@@ -2,14 +2,27 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   #before_action :authorize, except: [:show, :index]
 
+  layout 'layouts/post'
+
   def index
     @categories = Category.all
     if params[:category].blank?
-      @posts = Post.all.order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
+      if params[:tag]
+        @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
+      else
+        @posts = Post.all.order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
+      end
+      
     else
       @category_id = Category.find_by(name: params[:category]).id
-      @posts = Post.where(:category_id => @category_id).order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
+      if params[:tag]
+        @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
+      else
+        @posts = Post.where(:category_id => @category_id).order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
+      end
     end
+
+    
   end
 
   def show
@@ -57,7 +70,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit( :name, :content, :status, :user_id, :category_id, :image )
+      params.require(:post).permit( :name, :content, :status, :user_id, :category_id, :image, :tag_list )
     end
 
     def authorize

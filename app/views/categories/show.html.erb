@@ -5,7 +5,7 @@
 	<% @posts.each do |post| %>
 	  <div class="col-md-4 post-detail">
 	    <%= image_tag post.image.url %>
-	    <h3><%= link_to post.name, post %></h3>
+	    <h3><%= link_to post.name.first(30), post %></h3>
 	    <p><label>By </label> <%= link_to post.user.username, user_path(post.user.id) %></p>
 	    <p><label>Pushlished at </label> <%= time_ago_in_words(post.created_at) %></p>
 
