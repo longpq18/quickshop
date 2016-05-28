@@ -3,15 +3,18 @@
 		<div class="col-md-12 header-top">
 			<div class="login">
 				<% if session[:user_id] %>
-					<%= link_to session[:user_name], user_path(session[:user_id]) %>
-					<ul>
+					<a class="login-avatar">
+					<%= image_tag current_user.avatar.url %>
+					</a>
+					
+					<ul class="login-profile">
 						<li>
 							<%= link_to 'Logout', session_path(session), method: :delete, class: 'register' %>
 						</li>
 					</ul>
 					
 					<% else %>
-					<%= link_to 'Login', new_session_path, class: 'a-login' %> |
+					<a href='/login' class='a-login' >Login</a> |
 					<a href="/register" class="a-login">Register</a>
 					
 				<% end %>
@@ -24,7 +27,13 @@
 			<div class="col-md-6 menu">
 				<nav class="menu-nav">
 					<ul>
-						<li><a href="/">Home</a></li>
+						<li><a href="#">Home</a>
+							<ul>
+								<li><a href="/">Home demo 1</a></li>
+								<li><a href="/home-demo-2">Home demo 2</a></li>
+								<li><a href="/home-demo-3">Home demo 3</a></li>
+							</ul>
+						</li>
 						<li><a href="/shop">Shop</a></li>
 						<li><a href="/blog">Blog</a>
 							<ul>
@@ -50,3 +59,10 @@
 		</div>
 	</div>
 </header>
+
+<script type="text/javascript">
+	$('.login-profile').hide();
+	$('.login-avatar').click(function(){
+	    $('.login-profile').slideToggle('slow');
+	});
+</script>

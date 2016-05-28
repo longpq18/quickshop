@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       flash[:notice] = "User or password not correct"
-      redirect_to '/sessions/new'
+      redirect_to '/login'
     end
   end
 
   def destroy
     session.delete(:user_id)
     session.delete(:user_name)
-    redirect_to '/sessions/new', alert: "User logged out :D"
+    redirect_to '/login', alert: "User logged out :D"
   end
 
   private

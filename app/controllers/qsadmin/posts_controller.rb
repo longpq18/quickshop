@@ -3,7 +3,7 @@ class Qsadmin::PostsController < Qsadmin::BaseController
   
 
   def index
-    @posts = Post.all.paginate(:page => params[:page], :per_page => 5)
+    @posts = Qsadmin::Post.all.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show
@@ -53,10 +53,10 @@ class Qsadmin::PostsController < Qsadmin::BaseController
   private
 
     def set_qsadmin_post
-      @qsadmin_post = Qsadmin::Post.find(params[:id])
+      @qsadmin_post = Post.find(params[:id])
     end
 
     def qsadmin_post_params
-      params.fetch(:qsadmin_post, {})
+      params.require(:qsadmin_post).permit( :name, :content, :status, :user_id, :category_id, :image, :tag_list )
     end
 end

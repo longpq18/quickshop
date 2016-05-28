@@ -7,22 +7,17 @@ class PostsController < ApplicationController
   def index
     @categories = Category.all
     if params[:category].blank?
-      if params[:tag]
-        @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
-      else
         @posts = Post.all.order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
-      end
-      
     else
-      @category_id = Category.find_by(name: params[:category]).id
-      if params[:tag]
-        @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
-      else
-        @posts = Post.where(:category_id => @category_id).order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
-      end
-    end
+      @category_id = Category.find_by(name: params[:category]).id   
+      @posts = Post.where(:category_id => @category_id).order("created_at DESC").limit(6).paginate(:page => params[:page], :per_page => 10)
+    end 
+  end
 
-    
+  def tag
+    if params[:tag]
+        @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 10)
+    end   
   end
 
   def show

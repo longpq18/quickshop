@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickShop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+
+<%= render 'layouts/slideshow' %>
+
+<section class="container-fluid main-content">
+	<div class="container icon-box">
+		<div class="aks-widget-icon-box aks-widget-icon-box-base col-md-3">
+			<div class="crazy-icon-box z-depth-1">
+				<span class="crazy-icon" style="color:#43bfd8;"><i class="fa fa-gears"></i></span>
+				<div class="crazy-content">
+					<h4>30 DAYS MONEY BACK</h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
+				</div>
+				<div class="btns"><a class=" waves-effect btn" style="color:#ffffff; background: #43bfd8;">Shop now</a>
+				</div>
+		</div></div>
+
+		<div class="aks-widget-icon-box aks-widget-icon-box-base col-md-3">
+			<div class="crazy-icon-box z-depth-1">
+				<span class="crazy-icon" style="color:#81d742;"><i class="fa fa-thumbs-o-up"></i></span>
+				<div class="crazy-content">
+					<h4>FAST DELIVERY</h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
+				</div>
+				<div class="btns"><a class=" waves-effect btn" style="color:#ffffff; background: #81d742;">Shop now</a>
+				</div>
+		</div></div>
+
+		<div class="aks-widget-icon-box aks-widget-icon-box-base col-md-3">
+			<div class="crazy-icon-box z-depth-1">
+				<span class="crazy-icon" style="color:#8224e3;"><i class="fa fa-ra"></i></span>
+				<div class="crazy-content">
+					<h4>FREESHIP IN U.S.A</h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
+				</div>
+				<div class="btns"><a class=" waves-effect btn" style="color:#ffffff; background: #8224e3;">Shop now</a>
+				</div>
+		</div></div>
+
+		<div class="aks-widget-icon-box aks-widget-icon-box-base col-md-3">
+			<div class="crazy-icon-box z-depth-1">
+				<span class="crazy-icon" style="color:#eeee22;"><i class="fa fa-angellist"></i></span>
+				<div class="crazy-content">
+					<h4>30 DAYS MONEY BACK</h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
+				</div>
+				<div class="btns"><a class=" waves-effect btn" style="color:#ffffff; background: #eeee22;">Shop now</a>
+				</div>
+		</div></div>
+	</div>
+		
+	</div>
+
+	<div class="textwidget" style="background-color: rgb(16, 127, 135); clear:both; text-align: center;">
+		<p style="font-size:25px; padding:70px; color:#fff; margin: 0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.
+		</p>
+	</div>
+
+	<div class="container products">
+		<%= yield %>
+	</div>
+
+	<div class="textwidget" style="background-color: rgb(16, 127, 135); clear:both; text-align: center;">
+		<p style="font-size:25px; padding:70px; color:#fff; margin: 0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.
+		</p>
+	</div>
+	<%= render 'layouts/recent_posts' %>
+	<%= render 'layouts/testimonials' %>
+	
+	
+</section>
+
+<%= render 'layouts/footer' %>
+
+</body>
+</html>

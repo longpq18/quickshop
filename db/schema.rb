@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522132638) do
+ActiveRecord::Schema.define(version: 20160528145157) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(version: 20160522132638) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "group_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "group_catgories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "status",     limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.text     "content",            limit: 65535
@@ -60,10 +74,11 @@ ActiveRecord::Schema.define(version: 20160522132638) do
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "status",     limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",              limit: 255
+    t.integer  "status",            limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "group_category_id", limit: 4
   end
 
   create_table "products", force: :cascade do |t|
@@ -80,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160522132638) do
     t.integer  "product_image_file_size",    limit: 4
     t.datetime "product_image_updated_at"
     t.integer  "product_category_id",        limit: 4
+    t.integer  "group_category_id",          limit: 4
   end
 
   create_table "qsadmin_posts", force: :cascade do |t|
@@ -131,19 +147,21 @@ ActiveRecord::Schema.define(version: 20160522132638) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",          limit: 255
-    t.string   "last_name",           limit: 255
-    t.string   "email",               limit: 255
-    t.string   "username",            limit: 255
-    t.string   "password",            limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "salt",                limit: 255
-    t.string   "password_digest",     limit: 255
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size",    limit: 4
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "email",                  limit: 255
+    t.string   "username",               limit: 255
+    t.string   "password",               limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "salt",                   limit: 255
+    t.string   "password_digest",        limit: 255
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "password_reset_token",   limit: 255
+    t.datetime "password_reset_sent_at"
   end
 
   add_foreign_key "taggings", "posts"

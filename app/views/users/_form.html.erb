@@ -12,6 +12,7 @@
   <% end %>
 
   <div class="actions">
+    <p><label>Avatar</label> <%= f.file_field :avatar %> </p>
     <p><label>First Name</label><br><%= f.text_field :first_name %></p>
     <p><label>Last Name</label><br><%= f.text_field :last_name %></p>
     <p><label>Email</label><br><%= f.text_field :email %></p>
@@ -20,6 +21,6 @@
     <p> <label>Password Confirmation:</label><br> 
         <%= f.password_field :password_confirmation %> 
     </p>
-    <%= f.submit "Register" %>
+    <%= f.submit "Register", :class => 'register' %>
   </div>
 <% end %>

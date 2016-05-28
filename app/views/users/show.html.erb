@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-<p><label>First Name</label><%= @user.first_name %></p>
-<p><label>Last Name</label><%= @user.last_name %></p>
-<p><label>Password</label><%= @user.password %></p>
+<p>Avatar <%= image_tag @user.avatar.url %></p>
+<p><label>Full Name</label> <%= @user.first_name %><%= @user.last_name %></p>
+<p><label>Email</label> <%= @user.email %> </p>
+<p><%= link_to 'Update profile', edit_user_path( @user ) %></p>
 <%= link_to 'Back', users_path %>

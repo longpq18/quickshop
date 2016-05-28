@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
 	  def authorize
 	  	if session[:user_name] 
-	  		if session[:user_name] == 'hklong'
+	  		if session[:user_name] == 'admin'
 	    		redirect_to login_url, alert: "Not authorized" if current_user.nil?	 
 	    	else 
 		    	redirect_to root_path

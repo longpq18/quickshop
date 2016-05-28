@@ -1,0 +1,8 @@
+<div class="category">
+	<h3>Category</h3>
+	<ul>
+		<% ProductCategory.all.each do |cate| %>
+			<li><%= link_to cate.name, cate %></li>
+		<% end %>
+	</ul>
+</div>

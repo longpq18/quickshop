@@ -5,13 +5,13 @@ class Qsadmin::BaseController < ApplicationController
 
 	def check_login
 		if session[:user_id] 
-			if (session[:user_name] == "hklong") then
+			if (session[:user_name] == "admin") then
 				redirect_to qsadmin_dashboards_path
 			else
 				redirect_to root_path
 			end
 		else
-			redirect_to '/sessions/new'
+			redirect_to '/login'
 		end
 		
 	end
@@ -19,6 +19,6 @@ class Qsadmin::BaseController < ApplicationController
 	private
 
 		def not_authenticated
-			redirect_to '/sessions/new', alert: "Please login first"
+			redirect_to '/login', alert: "Please login first"
 		end
 end

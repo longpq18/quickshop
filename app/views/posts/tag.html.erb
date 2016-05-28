@@ -1,0 +1,18 @@
+<div class="posts-tags">
+  <% @posts.each do |post| %>
+  		<div class="col-md-4 tag-img">
+  			<%= image_tag post.image.url %>
+  		</div>
+     	<div class="col-md-8 tag-content">
+	        <h3><%= link_to post.name.first(30), post %></h3>
+	        <p><label>By </label> <%= link_to post.user.username, user_path(post.user.id) %> | 
+	          <label>Category:</label> <%= link_to post.category.name, category_path(post.category.id) %></p>
+	        <p><label>Pushlished at </label> <%= time_ago_in_words(post.created_at) %></p>
+	        <p>
+	          Tags: <%= raw post.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+	        </p>
+	    </div>
+  <% end %>
+
+  <p><%= will_paginate %></p>
+</div>
